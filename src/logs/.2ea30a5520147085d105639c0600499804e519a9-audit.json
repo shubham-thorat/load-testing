@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "/Users/shubham.thorat/Documents/Callbreak/http2/server/src/logs/.2ea30a5520147085d105639c0600499804e519a9-audit.json",
+    "files": [
+        {
+            "date": 1692276645982,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/server/src/logs/node-http2-error.log.2023-08-17_18",
+            "hash": "25c558159b81bb9415568c0715a8978c"
+        }
+    ]
+}

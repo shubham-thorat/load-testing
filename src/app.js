@@ -104,6 +104,7 @@ server.on('stream', (stream, headers) => {
             console.log("Total Request: ", times.length)
             helper.calculate(times, logger)
             times = []
+            console.log("Array length after processing", times.length)
           }
 
           stream.end(JSON.stringify({
