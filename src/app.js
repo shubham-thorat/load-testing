@@ -106,6 +106,7 @@ server.on('stream', (stream, headers) => {
           const endTime = Date.now();
           total_time += (endTime - startTime);
           max_value = Math.max(max_value, endTime)
+
           logger.info(JSON.stringify({
             msg: 'Redis key set success',
             streamId: stream.id,
