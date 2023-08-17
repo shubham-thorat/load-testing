@@ -36,6 +36,7 @@ server.on('stream', (stream, headers) => {
 
   const method = headers[':method'];
   const path = headers[':path'];
+  const request_count = Number.parseInt(headers['count'] ?? 0);
 
   logger.info(JSON.stringify({
     "Method": method,
@@ -94,7 +95,7 @@ server.on('stream', (stream, headers) => {
 
       try {
         const payload = data === '' ? '{}' : JSON.parse(data);
-        const request_count = Number.parseInt(payload.count) ?? 0;
+
         RedisClient.setKey(payload.key, payload.value).then(response => {
           const endTime = Date.now();
           stream.respond({ ':status': 200 })
