@@ -146,5 +146,6 @@ server.on('stream', (stream, headers) => {
 
 const port = process.env.PORT || 6000
 server.listen(port, () => {
+  console.log("Inital Total Time", total_time)
   console.log(`Server running https://localhost:${port}`)
 })
