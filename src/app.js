@@ -100,6 +100,14 @@ server.on('stream', (stream, headers) => {
           const endTime = Date.now();
           stream.respond({ ':status': 200 })
           times.push(endTime - startTime);
+
+          logger.info(JSON.stringify({
+            msg: 'Redis key set success',
+            streamId: stream.id,
+            TimeDiffServer: (endTime - startTime) / 1000,
+            "request count": times.length
+          }))
+
           if (times.length === request_count) {
             console.log("Total Request: ", times.length)
             helper.calculate(times, logger)
@@ -111,6 +119,7 @@ server.on('stream', (stream, headers) => {
             msg: 'Redis key set success',
             streamId: stream.id,
             TimeDiffServer: (endTime - startTime) / 1000,
+            "request count": times.length
           }))
 
         }).catch(error => {
