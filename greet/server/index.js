@@ -18,7 +18,12 @@ function cleanup(server) {
   }
 }
 
-
+process.on('SIGINT', function () {
+  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+  // some other closing procedures go here
+  total_time = 0;
+  process.exit(0);
+});
 
 
 function main() {
