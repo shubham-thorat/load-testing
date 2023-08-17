@@ -48,7 +48,7 @@ const calculate = (times, logger) => {
     "50 Percentile": `${r2.result}ms`,
     "min time required for request": `${r1.min_value}ms`,
     "max time required for request": `${r1.max_value}ms`,
-    "average": `${per_50}ms`,
+    "average": `${per_50.toFixed(3)}ms`,
     "proccessing time": `${(endTime - startTime)}ms`,
   }))
 
@@ -58,7 +58,7 @@ const calculate = (times, logger) => {
     "50 Percentile": `${r2.result}ms`,
     "min time required for request": `${r1.min_value}ms`,
     "max time required for request": `${r1.max_value}ms`,
-    "average": `${per_50}ms`,
+    "average": `${per_50.toFixed(3)}ms`,
     "proccessing time": `${(endTime - startTime)}ms`,
   })
 }
