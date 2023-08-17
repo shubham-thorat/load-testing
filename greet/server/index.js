@@ -46,7 +46,7 @@ function main() {
     creds = grpc.ServerCredentials.createInsecure()
   }
 
-  server.bindAsync(addr2, creds, (err, _) => {
+  server.bindAsync(addr, creds, (err, _) => {
     if (err) {
       console.log("error", err)
       return cleanup(server);
@@ -55,7 +55,7 @@ function main() {
   });
 
   // logger.info(`Server start on running ${addr}`)
-  console.log(`Server start on running ${addr2}`)
+  console.log(`Server start on running ${addr}`)
 }
 
 main();
