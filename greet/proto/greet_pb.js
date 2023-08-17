@@ -404,7 +404,8 @@ proto.Greet.RedisRequest.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 1, ""),
     rid: jspb.Message.getFieldWithDefault(msg, 2, 0),
     key: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 4, "")
+    value: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    count: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -456,6 +457,10 @@ proto.Greet.RedisRequest.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setValue(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCount(value);
       break;
     default:
       reader.skipField();
@@ -511,6 +516,13 @@ proto.Greet.RedisRequest.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getCount();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -586,6 +598,24 @@ proto.Greet.RedisRequest.prototype.getValue = function() {
  */
 proto.Greet.RedisRequest.prototype.setValue = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string count = 5;
+ * @return {string}
+ */
+proto.Greet.RedisRequest.prototype.getCount = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.Greet.RedisRequest} returns this
+ */
+proto.Greet.RedisRequest.prototype.setCount = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 

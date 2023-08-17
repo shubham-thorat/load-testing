@@ -16,6 +16,7 @@ message RedisRequest {
   int32 rid = 2;
   string key = 3;
   string value = 4;
+  string count = 5;
 }
 
 message RedisResponse {

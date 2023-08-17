@@ -1,6 +1,7 @@
 const logger = require('gk-logger')();
 const pb = require('../proto/greet_pb')
 const RedisClient = require('./redis/redisClient');
+const helper = require('./helper');
 
 exports.greet = (call, callback) => {
   logger.info('Greet was invoked');
@@ -51,25 +52,42 @@ exports.manyLongGreet = (call, calback) => {
   call.on('end', () => call.end());
 }
 
-let total_time = 0;
-let min_value = 0, max_value = 0;
-let index = 0;
+let times = []
+
+const calculate = () => {
+  const startTime = Date.now();
+  console.log("startTime", startTime)
+  const r1 = helper.calculatePercentile(times, 99);
+  const per_50 = helper.calculateMean(times);
+  const r2 = helper.calculatePercentile(times, 50);
+  const endTime = Date.now();
+  console.log("endtime", endTime)
+
+  logger.info(JSON.stringify({
+    "99th Percentile": `${r1.result}ms`,
+    "50 Percentile": `${r2.result}ms`,
+    "min time required for request": `${r1.min_value}ms`,
+    "max time required for request": `${r1.max_value}ms`,
+    "average": `${per_50}ms`,
+    "proccessing time": `${(endTime - startTime)}ms`,
+  }))
+
+
+  console.log({
+    "99th Percentile": `${r1.result}ms`,
+    "50 Percentile": `${r2.result}ms`,
+    "min time required for request": `${r1.min_value}ms`,
+    "max time required for request": `${r1.max_value}ms`,
+    "average": `${per_50}ms`,
+    "proccessing time": `${(endTime - startTime)}ms`,
+  })
+}
+
 exports.storeRedisData = (call, callback) => {
   const startTime = Date.now();
-  if (min_value === 0) {
-    min_value = startTime;
-  }
-  index += 1;
+
   call.on('data', (req) => {
-    logger.info(JSON.stringify({
-      msg: 'StoreRedisData request received',
-      type: req.getType(),
-      rid: req.getRid(),
-      key: req.getKey(),
-      value: req.getValue(),
-    }))
-
-
+    const count = Number.parseInt(req.getCount());
     RedisClient.setKey(req.getKey(), req.getValue()).then(response => {
       let res;
       if (response) {
@@ -82,17 +100,19 @@ exports.storeRedisData = (call, callback) => {
           .setMessage('Redis Success Failed');
       }
       const endTime = Date.now();
-      total_time += (endTime - startTime);
-      max_value = Math.max(max_value, endTime);
+      times.push(endTime - startTime);
+
       logger.info(JSON.stringify({
-        startTime: startTime,
-        endTime: endTime,
-        "Time Diff": (endTime - startTime) / 1000,
-        "Total Time": total_time / 1000,
-        "max time - min time": (max_value - min_value) / 1000,
-        "index": index
+        "Request Number": times.length,
+        "TimeDiff": (endTime - startTime) / 1000,
+        "count": count
       }))
 
+      if (times.length === count) {
+        console.log("Total Request: ", times.length)
+        calculate();
+        times = []
+      }
       call.write(res);
     }).catch(error => {
       const res = new pb.RedisResponse()
@@ -102,5 +122,11 @@ exports.storeRedisData = (call, callback) => {
     })
   })
 
-  call.on('end', () => call.end());
+  call.on('end', () => {
+    call.end();
+  });
 }
+
+
+//input load
+//output metrices (for both client & server)
