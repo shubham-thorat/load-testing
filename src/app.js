@@ -20,7 +20,15 @@ const getTime = (startTime) => {
   return (Date.now() - startTime) / 1000;
 }
 
+
 let total_time = 0;
+process.on('SIGINT', function () {
+  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+  // some other closing procedures go here
+  total_time = 0;
+  process.exit(0);
+});
+
 server.on('stream', (stream, headers) => {
   const startTime = Date.now()
   const method = headers[':method'];
@@ -133,12 +141,7 @@ server.on('stream', (stream, headers) => {
 })
 
 
-process.on('SIGINT', function () {
-  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
-  // some other closing procedures go here
-  total_time = 0;
-  process.exit(0);
-});
+
 
 const port = process.env.PORT || 6000
 server.listen(port, () => {
