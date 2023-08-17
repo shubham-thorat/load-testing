@@ -20,7 +20,7 @@ const getTime = (startTime) => {
   return (Date.now() - startTime) / 1000;
 }
 
-
+let total_time = 0;
 server.on('stream', (stream, headers) => {
   const startTime = Date.now()
   const method = headers[':method'];
@@ -88,12 +88,14 @@ server.on('stream', (stream, headers) => {
       try {
         const payload = data === '' ? '{}' : JSON.parse(data);
         RedisClient.setKey(payload.key, payload.value).then(response => {
-          const timeRequired = getTime(startTime);
+          const endTime = Date.now();
+          total_time += (endTime - startTime);
           logger.info(JSON.stringify({
             msg: 'Redis key set success',
             redisResponse: response,
             requestCount: request_count,
-            TimeDiffServer: timeRequired,
+            TimeDiffServer: (endTime - startTime) / 1000,
+            totalTime: total_time / 1000
           }))
           stream.respond({ ':status': 200 })
           stream.end(JSON.stringify({
@@ -134,6 +136,7 @@ server.on('stream', (stream, headers) => {
 process.on('SIGINT', function () {
   console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
   // some other closing procedures go here
+  total_time = 0;
   process.exit(0);
 });
 
