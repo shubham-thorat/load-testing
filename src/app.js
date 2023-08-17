@@ -22,6 +22,7 @@ const getTime = (startTime) => {
 
 
 let total_time = 0;
+let min_value, max_value;
 process.on('SIGINT', function () {
   console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
   // some other closing procedures go here
@@ -32,6 +33,10 @@ process.on('SIGINT', function () {
 server.on('stream', (stream, headers) => {
   // console.log("stream started.....")
   const startTime = Date.now()
+
+  if (min_value === 0) {
+    min_value = startTime;
+  }
   const method = headers[':method'];
   const path = headers[':path'];
   const request_count = headers['count'] ?? 0;
@@ -99,6 +104,7 @@ server.on('stream', (stream, headers) => {
         RedisClient.setKey(payload.key, payload.value).then(response => {
           const endTime = Date.now();
           total_time += (endTime - startTime);
+          max_value = Math.max(max_value, endTime)
           logger.info(JSON.stringify({
             msg: 'Redis key set success',
             streamId: stream.id,
@@ -106,7 +112,8 @@ server.on('stream', (stream, headers) => {
             requestCount: request_count,
             endTime: endTime,
             TimeDiffServer: (endTime - startTime) / 1000,
-            totalTime: total_time / 1000
+            totalTime: total_time / 1000,
+            "max time - min time": (max_value - min_value) / 1000
           }))
           stream.respond({ ':status': 200 })
           stream.end(JSON.stringify({
