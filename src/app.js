@@ -131,20 +131,7 @@ server.on('stream', (stream, headers) => {
   }
 })
 
-stream.on('close', () => {
-  console.log('connection closing....')
-  let total_time = 0;
-  for (let [key, value] of map) {
-    total_time += value;
-  }
-
-  logger.info(JSON.stringify({ 'TOTAL TIME REQUIRED': total_time }));
-  console.log('TOTAL TIME REQUIRED', total_time)
-  console.log('connection end....')
-  times.clear()
-})
-
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 6000
 server.listen(port, () => {
   console.log(`Server running https://localhost:${port}`)
 })

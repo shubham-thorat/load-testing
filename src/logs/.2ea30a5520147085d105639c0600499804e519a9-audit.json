@@ -6,14 +6,9 @@
     "auditLog": "/Users/shubham.thorat/Documents/Callbreak/http2/server/src/logs/.2ea30a5520147085d105639c0600499804e519a9-audit.json",
     "files": [
         {
-            "date": 1691657999382,
-            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/server/src/logs/node-http2-error.log.2023-08-10_14",
-            "hash": "502cc8f807a2436ad09d38e8069260d6"
-        },
-        {
-            "date": 1691670658316,
-            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/server/src/logs/node-http2-error.log.2023-08-10_18",
-            "hash": "8e259fcb9e1bf08f89ec959cec28d985"
+            "date": 1692254929338,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/server/src/logs/node-http2-error.log.2023-08-17_12",
+            "hash": "5533deb2e7a718acb5a655f39decab2f"
         }
     ]
 }
