@@ -1,0 +1,29 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/.9920a831d14c46c87d281db5d5fd587f13b177cf-audit.json",
+    "files": [
+        {
+            "date": 1692173714631,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-16_13",
+            "hash": "aa12ba9ac14c11010a173ff3a9bf7022"
+        },
+        {
+            "date": 1692174825304,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-16_14",
+            "hash": "08881eeef9cba4154e23beaaa1ee7481"
+        },
+        {
+            "date": 1692179951131,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-16_15",
+            "hash": "55b8948efa20c29dbed63af2dc958e1a"
+        },
+        {
+            "date": 1692182305065,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-16_16",
+            "hash": "351e9360054ea3c13b9958c6670efc71"
+        }
+    ]
+}
