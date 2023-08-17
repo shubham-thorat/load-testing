@@ -102,7 +102,7 @@ server.on('stream', (stream, headers) => {
             msg: 'Redis key set success',
             streamId: stream.id,
             requestCount: request_count,
-            TimeDiffServer: timeRequired,
+            TimeDiffServer: (endTime - startTime) / 1000,
           }))
         }).catch(error => {
           const timeRequired = getTime(startTime);
