@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-const addr = 'localhost:5051';
+const addr = '172.31.33.177:5051';
 
 
 function cleanup(server) {
