@@ -101,8 +101,10 @@ server.on('stream', (stream, headers) => {
           total_time += (endTime - startTime);
           logger.info(JSON.stringify({
             msg: 'Redis key set success',
+            streamId: stream.id,
             redisResponse: response,
             requestCount: request_count,
+            endTime: endTime,
             TimeDiffServer: (endTime - startTime) / 1000,
             totalTime: total_time / 1000
           }))
