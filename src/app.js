@@ -22,7 +22,8 @@ const getTime = (startTime) => {
 
 
 let total_time = 0;
-let min_value, max_value;
+let min_value = 0, max_value = 0;
+let index = 0;
 process.on('SIGINT', function () {
   console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
   // some other closing procedures go here
@@ -33,7 +34,7 @@ process.on('SIGINT', function () {
 server.on('stream', (stream, headers) => {
   // console.log("stream started.....")
   const startTime = Date.now()
-
+  index += 1;
   if (min_value === 0) {
     min_value = startTime;
   }
@@ -113,7 +114,8 @@ server.on('stream', (stream, headers) => {
             endTime: endTime,
             TimeDiffServer: (endTime - startTime) / 1000,
             totalTime: total_time / 1000,
-            "max time - min time": (max_value - min_value) / 1000
+            "max time - min time": (max_value - min_value) / 1000,
+            "index": index
           }))
           stream.respond({ ':status': 200 })
           stream.end(JSON.stringify({
