@@ -7,6 +7,7 @@ const path = require('path');
 
 
 const addr = '172.31.33.177:5051';
+const addr2 = 'localhost:5051';
 
 
 function cleanup(server) {
@@ -17,24 +18,15 @@ function cleanup(server) {
   }
 }
 
-process.on('SIGINT', function () {
-  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
-  // some other closing procedures go here
-  process.exit(0);
-});
+
 
 
 function main() {
   const server = new grpc.Server();
-
-  process.on('SIGINT', () => {
-    logger.error('Caught Interrupt Signal, Calling cleanup method');
-    cleanup(server);
-  })
   server.addService(GreetServiceService, serviceImpl);
 
 
-  const tls = true;
+  const tls = false;
   let creds;
   if (tls) {
     const rootCert = fs.readFileSync(path.join(__dirname, '../../ssl/ca.crt'));
@@ -49,15 +41,16 @@ function main() {
     creds = grpc.ServerCredentials.createInsecure()
   }
 
-  server.bindAsync(addr, creds, (err, _) => {
+  server.bindAsync(addr2, creds, (err, _) => {
     if (err) {
+      console.log("error", err)
       return cleanup(server);
     }
     server.start();
   });
 
   // logger.info(`Server start on running ${addr}`)
-  console.log(`Server start on running ${addr}`)
+  console.log(`Server start on running ${addr2}`)
 }
 
 main();
