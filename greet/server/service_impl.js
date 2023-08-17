@@ -79,6 +79,8 @@ exports.storeRedisData = (call, callback) => {
       const endTime = Date.now();
       total_time += (endTime - startTime);
       logger.info(JSON.stringify({
+        startTime: startTime,
+        endTime: endTime,
         "Time Diff": (endTime - startTime) / 1000,
         "Total Time": total_time / 1000
       }))
