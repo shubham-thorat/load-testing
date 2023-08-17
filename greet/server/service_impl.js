@@ -51,18 +51,17 @@ exports.manyLongGreet = (call, calback) => {
   call.on('end', () => call.end());
 }
 
-let index = 0;
+let total_time = 0;
 exports.storeRedisData = (call, callback) => {
+  const startTime = Date.now();
 
   call.on('data', (req) => {
-    index += 1;
     logger.info(JSON.stringify({
       msg: 'StoreRedisData request received',
       type: req.getType(),
       rid: req.getRid(),
       key: req.getKey(),
       value: req.getValue(),
-      "requestCount": index
     }))
 
 
@@ -77,6 +76,12 @@ exports.storeRedisData = (call, callback) => {
           .setStatus(500)
           .setMessage('Redis Success Failed');
       }
+      const endTime = Date.now();
+      total_time += (endTime - startTime);
+      logger.info(JSON.stringify({
+        "Time Diff": (endTime - startTime) / 1000,
+        "Total Time": total_time / 1000
+      }))
 
       call.write(res);
     }).catch(error => {

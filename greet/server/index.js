@@ -17,6 +17,13 @@ function cleanup(server) {
   }
 }
 
+process.on('SIGINT', function () {
+  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+  // some other closing procedures go here
+  process.exit(0);
+});
+
+
 function main() {
   const server = new grpc.Server();
 
