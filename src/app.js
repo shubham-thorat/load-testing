@@ -20,7 +20,6 @@ const getTime = (startTime) => {
   return (Date.now() - startTime) / 1000;
 }
 
-let times = new Map();
 
 server.on('stream', (stream, headers) => {
   const startTime = Date.now()
@@ -130,6 +129,13 @@ server.on('stream', (stream, headers) => {
 
   }
 })
+
+
+process.on('SIGINT', function () {
+  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+  // some other closing procedures go here
+  process.exit(0);
+});
 
 const port = process.env.PORT || 6000
 server.listen(port, () => {
