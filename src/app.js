@@ -30,6 +30,7 @@ process.on('SIGINT', function () {
 });
 
 server.on('stream', (stream, headers) => {
+  console.log("stream started.....")
   const startTime = Date.now()
   const method = headers[':method'];
   const path = headers[':path'];
