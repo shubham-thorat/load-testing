@@ -53,12 +53,13 @@ exports.manyLongGreet = (call, calback) => {
 
 let total_time = 0;
 let min_value = 0, max_value = 0;
+let index = 0;
 exports.storeRedisData = (call, callback) => {
   const startTime = Date.now();
   if (min_value === 0) {
     min_value = startTime;
   }
-
+  index += 1;
   call.on('data', (req) => {
     logger.info(JSON.stringify({
       msg: 'StoreRedisData request received',
@@ -88,7 +89,8 @@ exports.storeRedisData = (call, callback) => {
         endTime: endTime,
         "Time Diff": (endTime - startTime) / 1000,
         "Total Time": total_time / 1000,
-        "max time - min time": (max_value - min_value) / 1000
+        "max time - min time": (max_value - min_value) / 1000,
+        "index": index
       }))
 
       call.write(res);
