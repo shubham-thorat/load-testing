@@ -105,7 +105,8 @@ exports.storeRedisData = (call, callback) => {
       logger.info(JSON.stringify({
         "Request Number": times.length,
         "TimeDiff": (endTime - startTime) / 1000,
-        "count": count
+        "count": count,
+        "request count": times.length
       }))
 
       if (times.length === count) {
