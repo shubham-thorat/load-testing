@@ -49,7 +49,7 @@ function main() {
     creds = grpc.ServerCredentials.createInsecure()
   }
 
-  server.bindAsync(addr2, creds, (err, _) => {
+  server.bindAsync(addr, creds, (err, _) => {
     if (err) {
       console.log("error", err)
       return cleanup(server);
