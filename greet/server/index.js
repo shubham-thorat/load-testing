@@ -28,8 +28,8 @@ process.on('SIGINT', function () {
 
 function main() {
   const server = new grpc.Server({
-    "grpc.max_concurrent_streams": 1000,
-    'grpc-node.max_session_memory': 1000
+    "grpc.max_concurrent_streams": 100000,
+    'grpc-node.max_session_memory': 10000
   });
   server.addService(GreetServiceService, serviceImpl);
 
