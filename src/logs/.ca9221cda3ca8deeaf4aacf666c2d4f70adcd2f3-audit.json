@@ -1,0 +1,149 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "/home/ubuntu/load-testing/src/logs/.ca9221cda3ca8deeaf4aacf666c2d4f70adcd2f3-audit.json",
+    "files": [
+        {
+            "date": 1692275728488,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-17_12",
+            "hash": "a61185c0fc71b598af57546eaaea98f4"
+        },
+        {
+            "date": 1692277329132,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-17_13",
+            "hash": "4440a1641b30b72c2a8fa74e7d9736cd"
+        },
+        {
+            "date": 1692279317211,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-17_13.1",
+            "hash": "e4a64bd00d87e8d25f45ec4ff1bef24c"
+        },
+        {
+            "date": 1692279916889,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-17_13.2",
+            "hash": "db656fbf5ee9b9761cb8e4dc84ec26d2"
+        },
+        {
+            "date": 1692337707115,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_05",
+            "hash": "075f91b622484aec277274292e7af110"
+        },
+        {
+            "date": 1692338336691,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_05.1",
+            "hash": "3c7fa59bcb533f29d847c502caa8c2bc"
+        },
+        {
+            "date": 1692338400099,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06",
+            "hash": "2312870ad0565e7b31bd9bba37c0d4b4"
+        },
+        {
+            "date": 1692339182860,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.1",
+            "hash": "cec5f1a3428be628684cea586f46a1fe"
+        },
+        {
+            "date": 1692339450166,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.2",
+            "hash": "1579a7fd27bca7c563d9caf9135d912e"
+        },
+        {
+            "date": 1692339707920,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.3",
+            "hash": "5b8a3356a25ee0fb5b58fcd1d7d410cc"
+        },
+        {
+            "date": 1692339975594,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.4",
+            "hash": "d4da30657091cb5a79a5084c43eeb58c"
+        },
+        {
+            "date": 1692340598172,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.5",
+            "hash": "f27565a578c0582f31b3de0279aa245f"
+        },
+        {
+            "date": 1692341105523,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.6",
+            "hash": "a2c6fb9e94264f5931b6352cdb4133c7"
+        },
+        {
+            "date": 1692341372340,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.7",
+            "hash": "25499d51ec557a5cbdc9463fe03abaf4"
+        },
+        {
+            "date": 1692341639005,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.8",
+            "hash": "dd2633bc0874e10072520a35b5f78cf4"
+        },
+        {
+            "date": 1692341918197,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_06.9",
+            "hash": "b8ff8b4d0c4d281c34afc394e0bad60d"
+        },
+        {
+            "date": 1692342000000,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_07",
+            "hash": "a4ac1f77bb7edf1fb3c43c094042927d"
+        },
+        {
+            "date": 1692342271140,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_07.1",
+            "hash": "3a38489e48446df645786bf9fa172cb7"
+        },
+        {
+            "date": 1692342888714,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_07.2",
+            "hash": "89461b4674468773ff73bf8d5dd0985b"
+        },
+        {
+            "date": 1692343170815,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_07.3",
+            "hash": "5640de85937b96638c1b4406a43ad72c"
+        },
+        {
+            "date": 1692343453145,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_07.4",
+            "hash": "232a83d5d8091e62a8546ba030ff410e"
+        },
+        {
+            "date": 1692343732449,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_07.5",
+            "hash": "c19b945f457194fde8d840d904542314"
+        },
+        {
+            "date": 1692344817946,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_07.6",
+            "hash": "82573dc39c1a80af9a98356456988c52"
+        },
+        {
+            "date": 1692349063730,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_08",
+            "hash": "f4cb65b705420218825c5a33dcd96807"
+        },
+        {
+            "date": 1692354736308,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_10",
+            "hash": "67404620b2aaeba3c5b9b5b9ec8977ed"
+        },
+        {
+            "date": 1692357433317,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_11",
+            "hash": "53afb608a4c76039aa9edef1fb49ada2"
+        },
+        {
+            "date": 1692360232506,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-18_12",
+            "hash": "ff018a6aba307ed1c9310b8aaf99838b"
+        },
+        {
+            "date": 1692433320917,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2.log.2023-08-19_08",
+            "hash": "df7f4febb0b1f0f41335adaf31a58dbb"
+        }
+    ]
+}

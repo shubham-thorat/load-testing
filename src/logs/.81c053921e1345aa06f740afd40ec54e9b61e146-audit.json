@@ -1,0 +1,44 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "/home/ubuntu/load-testing/src/logs/.81c053921e1345aa06f740afd40ec54e9b61e146-audit.json",
+    "files": [
+        {
+            "date": 1692275728490,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2-error.log.2023-08-17_12",
+            "hash": "6b71474e93cdc83f98d249e7b34eab89"
+        },
+        {
+            "date": 1692277384863,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2-error.log.2023-08-17_13",
+            "hash": "6c38637ca2c6ceda592a8a3e2ecb2710"
+        },
+        {
+            "date": 1692337707117,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2-error.log.2023-08-18_05",
+            "hash": "4c73c5f4c0dd561f02d3f1d8d91f884d"
+        },
+        {
+            "date": 1692340659754,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2-error.log.2023-08-18_06",
+            "hash": "5740ad6e1e5bffa846488b89b0840bf9"
+        },
+        {
+            "date": 1692357433319,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2-error.log.2023-08-18_11",
+            "hash": "26f8f1ba21c845f5ed09137037c263dc"
+        },
+        {
+            "date": 1692360232508,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2-error.log.2023-08-18_12",
+            "hash": "c931dea3cc9e716f8361ce0898bd6e41"
+        },
+        {
+            "date": 1692433320918,
+            "name": "/home/ubuntu/load-testing/src/logs/node-http2-error.log.2023-08-19_08",
+            "hash": "56fbe2882fe952d606dafda036515cea"
+        }
+    ]
+}
