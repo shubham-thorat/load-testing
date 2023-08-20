@@ -3,6 +3,22 @@ const pb = require('../proto/greet_pb')
 const RedisClient = require('./redis/redisClient');
 const helper = require('./helper');
 
+
+class Count {
+  static request_count = 0;
+  static setInitial() {
+    this.request_count = 0;
+  }
+  static increment() {
+    this.request_count = this.request_count + 1
+    return this.request_count
+  }
+  static getCount() {
+    return this.request_count
+  }
+}
+
+
 exports.greet = (call, callback) => {
   logger.info('Greet was invoked');
   const res = new pb.GreetResponse()
@@ -85,9 +101,7 @@ const calculate = () => {
 
 exports.storeRedisData = (call, callback) => {
   const startTime = Date.now();
-
   call.on('data', (req) => {
-    const count = Number.parseInt(req.getCount());
     RedisClient.setKey(req.getKey(), req.getValue()).then(response => {
       let res;
       if (response) {
@@ -100,20 +114,11 @@ exports.storeRedisData = (call, callback) => {
           .setMessage('Redis Success Failed');
       }
       const endTime = Date.now();
-      times.push(endTime - startTime);
+      const timeRequired = endTime - startTime;
+      Count.increment()
 
-      logger.info(JSON.stringify({
-        "Request Number": times.length,
-        "TimeDiff": (endTime - startTime) / 1000,
-        "count": count,
-        "request count": times.length
-      }))
+      helper.writeToFile(timeRequired, Count.getCount(), serverlogfileName, logger)
 
-      if (times.length === count) {
-        console.log("Total Request: ", times.length)
-        calculate();
-        times = []
-      }
       call.write(res);
     }).catch(error => {
       const res = new pb.RedisResponse()

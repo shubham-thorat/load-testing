@@ -402,10 +402,10 @@ proto.Greet.RedisRequest.prototype.toObject = function(opt_includeInstance) {
 proto.Greet.RedisRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    rid: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    key: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    count: jspb.Message.getFieldWithDefault(msg, 5, "")
+    key: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    value: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    count: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    filename: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -447,20 +447,20 @@ proto.Greet.RedisRequest.deserializeBinaryFromReader = function(msg, reader) {
       msg.setType(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setRid(value);
-      break;
-    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setKey(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setValue(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setCount(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFilename(value);
       break;
     default:
       reader.skipField();
@@ -498,28 +498,28 @@ proto.Greet.RedisRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getRid();
-  if (f !== 0) {
-    writer.writeInt32(
-      2,
-      f
-    );
-  }
   f = message.getKey();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
   f = message.getValue();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
   f = message.getCount();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getFilename();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -548,29 +548,11 @@ proto.Greet.RedisRequest.prototype.setType = function(value) {
 
 
 /**
- * optional int32 rid = 2;
- * @return {number}
- */
-proto.Greet.RedisRequest.prototype.getRid = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.Greet.RedisRequest} returns this
- */
-proto.Greet.RedisRequest.prototype.setRid = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional string key = 3;
+ * optional string key = 2;
  * @return {string}
  */
 proto.Greet.RedisRequest.prototype.getKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -579,16 +561,16 @@ proto.Greet.RedisRequest.prototype.getKey = function() {
  * @return {!proto.Greet.RedisRequest} returns this
  */
 proto.Greet.RedisRequest.prototype.setKey = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string value = 4;
+ * optional string value = 3;
  * @return {string}
  */
 proto.Greet.RedisRequest.prototype.getValue = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -597,16 +579,16 @@ proto.Greet.RedisRequest.prototype.getValue = function() {
  * @return {!proto.Greet.RedisRequest} returns this
  */
 proto.Greet.RedisRequest.prototype.setValue = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string count = 5;
+ * optional string count = 4;
  * @return {string}
  */
 proto.Greet.RedisRequest.prototype.getCount = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -615,6 +597,24 @@ proto.Greet.RedisRequest.prototype.getCount = function() {
  * @return {!proto.Greet.RedisRequest} returns this
  */
 proto.Greet.RedisRequest.prototype.setCount = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string filename = 5;
+ * @return {string}
+ */
+proto.Greet.RedisRequest.prototype.getFilename = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.Greet.RedisRequest} returns this
+ */
+proto.Greet.RedisRequest.prototype.setFilename = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 

@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-const addr = '172.31.33.177:5051';
+const addr = 'localhost:5051';
 const addr2 = 'localhost:5051';
 
 
@@ -29,9 +29,10 @@ process.on('SIGINT', function () {
 function main() {
   const server = new grpc.Server({
     "grpc.max_concurrent_streams": 100000,
-    'grpc-node.max_session_memory': 10000
+    'grpc-node.max_session_memory': 1000
   });
   server.addService(GreetServiceService, serviceImpl);
+
 
 
   const tls = false;
@@ -50,6 +51,12 @@ function main() {
   }
 
   server.bindAsync(addr, creds, (err, _) => {
+
+    if (!fs.existsSync('./output')) {
+      fs.mkdirSync('./output');
+      console.log('Output Folder created')
+    }
+
     if (err) {
       console.log("error", err)
       return cleanup(server);

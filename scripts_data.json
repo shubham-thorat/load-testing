@@ -1,0 +1,13 @@
+{
+  "base_url":"localhost:5051",
+  "request_data" : [
+    {
+      "number_of_request":1000,
+      "workers":1,
+      "max_concurrent_streams":1000,
+      "data_file_path" : "./data.json",
+      "proto_file":"./greet/proto/greet.proto",
+      "proto_service":"Greet.GreetService/StoreRedisData"
+    }
+  ]
+}

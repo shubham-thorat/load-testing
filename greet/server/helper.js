@@ -34,7 +34,21 @@ function calculateMean(array) {
   return mean;
 }
 
+
+const writeToFile = (timeRequired, request_count, serverlogfileName, logger) => {
+  const file_name = serverlogfileName ?? 'output_server.log'
+  const path = `./output/logs/${file_name}`
+  const data = `${request_count} ${timeRequired.toString()}\n`
+  fs.appendFile(path, data, (err) => {
+    if (err) {
+      console.log("Error occurred while appending data to file : ", path, err)
+    }
+  })
+
+}
+
 module.exports = {
   calculateMean,
-  calculatePercentile
+  calculatePercentile,
+  writeToFile
 }

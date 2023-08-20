@@ -1,0 +1,46 @@
+[
+  {
+    "processed_log_file": "./output/logs/output_client_1_1000.json",
+    "clients": 1,
+    "workers": 10,
+    "request_count": 1000,
+    "min_time": "229.625ms",
+    "max_time": "21303.166ms",
+    "50th_percentile": "901.75ms",
+    "90th_percentile": "1642.375ms",
+    "99th_percentile": "5035.834ms"
+  },
+  {
+    "processed_log_file": "./output/logs/output_client_1_1000.json",
+    "clients": 1,
+    "workers": 1,
+    "request_count": 1000,
+    "min_time": "110.5ms",
+    "max_time": "9987.917ms",
+    "50th_percentile": "166.291ms",
+    "90th_percentile": "288.417ms",
+    "99th_percentile": "781.417ms"
+  },
+  {
+    "processed_log_file": "./output/logs/output_client_1_1000.json",
+    "clients": 1,
+    "workers": 1,
+    "request_count": 1000,
+    "min_time": "110.5ms",
+    "max_time": "9987.917ms",
+    "50th_percentile": "166.291ms",
+    "90th_percentile": "288.417ms",
+    "99th_percentile": "781.417ms"
+  },
+  {
+    "processed_log_file": "./output/logs/output_client_1_1000.json",
+    "clients": 1,
+    "workers": 1,
+    "request_count": 1000,
+    "min_time": "110.5ms",
+    "max_time": "9987.917ms",
+    "50th_percentile": "166.291ms",
+    "90th_percentile": "288.417ms",
+    "99th_percentile": "781.417ms"
+  }
+]

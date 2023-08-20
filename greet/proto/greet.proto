@@ -13,10 +13,10 @@ message GreetResponse {
 
 message RedisRequest {
   string type = 1;
-  int32 rid = 2;
-  string key = 3;
-  string value = 4;
-  string count = 5;
+  string key = 2;
+  string value = 3;
+  string count = 4;
+  string filename = 5;
 }
 
 message RedisResponse {
