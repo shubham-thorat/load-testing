@@ -1,3 +1,5 @@
+const fs = require('node:fs');
+
 function calculatePercentile(array, percentile) {
   if (array.length === 0) {
     console.log("Array is empty.");
@@ -63,8 +65,23 @@ const calculate = (times, logger) => {
   })
 }
 
+
+
+const writeToFile = (timeRequired, request_count, serverlogfilePath, logger) => {
+  console.log("server log file", serverlogfilePath)
+  const file_name = serverlogfilePath ?? 'output_server.log'
+  const path = `./output/logs/${file_name}`
+  const data = `${request_count} ${timeRequired.toString()}\n`
+  fs.appendFile(path, data, (err) => {
+    if (err) {
+      console.log("Error occurred while appending data to file : ", path, err)
+    }
+  })
+
+}
 module.exports = {
   calculateMean,
   calculatePercentile,
-  calculate
+  calculate,
+  writeToFile
 }

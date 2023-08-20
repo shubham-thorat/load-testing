@@ -21,14 +21,25 @@ const getTime = (startTime) => {
   return (Date.now() - startTime) / 1000;
 }
 
-let times = []
-
-
 process.on('SIGINT', function () {
   console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
   // some other closing procedures go her
   process.exit(0);
 });
+
+class Count {
+  static request_count = 0;
+  static setInitial() {
+    this.request_count = 0;
+  }
+  static increment() {
+    this.request_count = this.request_count + 1
+    return this.request_count
+  }
+  static getCount() {
+    return this.request_count
+  }
+}
 
 server.on('stream', (stream, headers) => {
   // console.log("stream started.....")
@@ -36,7 +47,8 @@ server.on('stream', (stream, headers) => {
 
   const method = headers[':method'];
   const path = headers[':path'];
-  const request_count = Number.parseInt(headers['count'] ?? 0);
+  console.log("headers", headers)
+  const serverlogfilePath = headers['logfilepath'];
 
   logger.info(JSON.stringify({
     "Method": method,
@@ -60,7 +72,6 @@ server.on('stream', (stream, headers) => {
   stream.on('error', (err) => {
 
     const timeRequired = getTime(startTime);
-    times.set(`${stream.id}_${startTime}`, timeRequired);
     console.log("server error occurred", JSON.stringify(err))
     logger.error(JSON.stringify({
       msg: `Error occured ${JSON.stringify(err)}`,
@@ -81,6 +92,7 @@ server.on('stream', (stream, headers) => {
       "TimeDiffServer": timeRequired,
     }))
   } else {
+
     let data = ''
     stream.setEncoding('utf-8')
     stream.on('data', (chunk) => {
@@ -99,27 +111,23 @@ server.on('stream', (stream, headers) => {
         RedisClient.setKey(payload.key, payload.value).then(response => {
           const endTime = Date.now();
           stream.respond({ ':status': 200 })
-          times.push(endTime - startTime);
+          Count.increment()
+          const timeRequired = endTime - startTime;
+
+          helper.writeToFile(timeRequired, Count.getCount(), serverlogfilePath, logger)
 
           logger.info(JSON.stringify({
             msg: 'Redis key set success',
             streamId: stream.id,
             TimeDiffServer: (endTime - startTime) / 1000,
-            "request count": times.length
+            "request count": Count.getCount()
           }))
-
-          if (times.length === request_count) {
-            console.log("Total Request: ", times.length)
-            helper.calculate(times, logger)
-            times = []
-            console.log("Array length after processing", times.length)
-          }
 
           stream.end(JSON.stringify({
             msg: 'Redis key set success',
             streamId: stream.id,
             TimeDiffServer: (endTime - startTime) / 1000,
-            "request count": times.length
+            "request count": Count.getCount()
           }))
 
         }).catch(error => {
@@ -135,7 +143,6 @@ server.on('stream', (stream, headers) => {
         })
 
       } catch (error) {
-        times = []
         const timeRequired = getTime(startTime);
         logger.error(JSON.stringify({ "Error while parsing payload or setting redis key": error }))
         stream.respond({ ':status': 500 })
@@ -155,6 +162,15 @@ server.on('stream', (stream, headers) => {
 
 const port = process.env.PORT || 6000
 server.listen(port, () => {
-  console.log("inital total request", times.length)
+  try {
+    if (!fs.existsSync('./output')) {
+      fs.mkdirSync('./output');
+      console.log('Output Folder created')
+    }
+  } catch (err) {
+    console.log(`Error while creating output folder..`)
+  }
+
+  Count.setInitial()
   console.log(`Server running https://localhost:${port}`)
 })
