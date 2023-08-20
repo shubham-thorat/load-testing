@@ -47,7 +47,7 @@ server.on('stream', (stream, headers) => {
 
   const method = headers[':method'];
   const path = headers[':path'];
-  console.log("headers", headers)
+  //console.log("headers", headers)
   const serverlogfilePath = headers['logfilepath'];
 
   logger.info(JSON.stringify({

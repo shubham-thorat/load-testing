@@ -68,7 +68,7 @@ const calculate = (times, logger) => {
 
 
 const writeToFile = (timeRequired, request_count, serverlogfilePath, logger) => {
-  console.log("server log file", serverlogfilePath)
+  //console.log("server log file", serverlogfilePath)
   const file_name = serverlogfilePath ?? 'output_server.log'
   const path = `./output/logs/${file_name}`
   const data = `${request_count} ${timeRequired.toString()}\n`
