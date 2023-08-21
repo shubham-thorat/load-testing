@@ -101,10 +101,10 @@ server.on('stream', (stream, headers) => {
     })
 
     stream.on('end', () => {
-      logger.info(JSON.stringify({
-        streamId: stream.id,
-        DataReceivedAtServer: data,
-      }))
+      // logger.info(JSON.stringify({
+      //   streamId: stream.id,
+      //   DataReceivedAtServer: data,
+      // }))
 
       try {
         const payload = data === '' ? '{}' : JSON.parse(data);
