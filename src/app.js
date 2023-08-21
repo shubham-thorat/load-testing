@@ -122,7 +122,7 @@ server.on('stream', (stream, headers) => {
           //   TimeDiffServer: (endTime - startTime) / 1000,
           //   request_count: Count.getCount()
           // }))
-          console.log("Count", Count.getCount)
+          console.log("Count", Count.getCount())
           if (prev_file !== serverlogfileName) {
 
             console.log("1 Process Ended reinital request count", prev_file)
