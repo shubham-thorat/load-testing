@@ -126,6 +126,7 @@ server.on('stream', (stream, headers) => {
           if (prev_file !== serverlogfileName) {
 
             console.log("1 Process Ended reinital request count", prev_file)
+            prev_file = serverlogfileName
             console.log("request_count", Count.getCount())
             Count.setInitial()
           }
