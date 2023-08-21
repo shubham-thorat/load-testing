@@ -38,12 +38,10 @@ function calculateMean(array) {
 
 const calculate = (times, logger) => {
   const startTime = Date.now();
-  console.log("startTime", startTime)
   const r1 = calculatePercentile(times, 99);
   const per_50 = calculateMean(times);
   const r2 = calculatePercentile(times, 50);
   const endTime = Date.now();
-  console.log("endtime", endTime)
 
   logger.info(JSON.stringify({
     "99th Percentile": `${r1.result}ms`,
@@ -67,9 +65,15 @@ const calculate = (times, logger) => {
 
 
 
+<<<<<<< HEAD
 const writeToFile = (timeRequired, request_count, serverlogfilePath, logger) => {
   //console.log("server log file", serverlogfilePath)
   const file_name = serverlogfilePath ?? 'output_server.log'
+=======
+const writeToFile = (timeRequired, request_count, serverlogfileName, logger) => {
+  console.log("server log file", serverlogfileName)
+  const file_name = serverlogfileName ?? 'output_server.log'
+>>>>>>> 89ecd9bd7cbc7a13d9c689a7ef8fcc1acdfbcee8
   const path = `./output/logs/${file_name}`
   const data = `${request_count} ${timeRequired.toString()}\n`
   fs.appendFile(path, data, (err) => {
@@ -77,8 +81,8 @@ const writeToFile = (timeRequired, request_count, serverlogfilePath, logger) => 
       console.log("Error occurred while appending data to file : ", path, err)
     }
   })
-
 }
+
 module.exports = {
   calculateMean,
   calculatePercentile,
