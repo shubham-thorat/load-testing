@@ -38,14 +38,14 @@ def calculate(latencies, file, clients, requests):
     max_value = latencies[-1]
 
     data = {
-        'Processed log file': file,
-        'Clients': clients,
-        'Request Count': len(latencies),
-        'min_time': f"{round(min_value / 1000, 2)}ms",
-        'max_time': f"{round(max_value / 1000, 2)}ms",
-        "50th percentile": f"{round(per_50 / 1000, 2)}ms",
-        "90th percentile": f"{round(per_90 / 1000, 2)}ms",
-        "99th percentile": f"{round(per_99 / 1000, 2)}ms",
+        'processed_log_file': file,
+        'clients': clients,
+        'request_count': len(latencies),
+        'min_time': f"{round(min_value, 4)}ms",
+        'max_time': f"{round(max_value, 4)}ms",
+        "50th_percentile": f"{round(per_50, 4)}ms",
+        "90th_percentile": f"{round(per_90, 4)}ms",
+        "99th_percentile": f"{round(per_99, 4)}ms",
         # "99.9th percentile": f"{round(per_99_9 / 1000, 2)}ms",
     }
     print(f'Latencies data for log file {file} : \n{data}')
@@ -80,13 +80,13 @@ def addToJSONFile(filePath, latenciesData):
 
 def convertJSONToArray(item):
     return [
-        item['Request Count'],
-        item['Clients'],
+        item['request_count'],
+        item['clients'],
         item['min_time'],
         item['max_time'],
-        item["50th percentile"],
-        item["90th percentile"],
-        item["99th percentile"],
+        item["50th_percentile"],
+        item["90th_percentile"],
+        item["99th_percentile"],
     ]
 
 
@@ -140,9 +140,7 @@ def main():
         # Find all files matching the pattern "output_*.log"
         file_pattern = "./output/logs/output_server_*.json"
         matching_files = glob.glob(file_pattern)
-        output_file = input('Enter output JSON file path : ')
-        if not output_file:
-            output_file = './output/json/result_server.json'
+        output_file = './output/json/result_server.json'
         # Read the content of each matching file
         print(matching_files)
         if not matching_files:
@@ -158,7 +156,7 @@ def main():
 
         print(
             f'** Processed logs file & result added to JSON File {output_file}**')
-        excel_file = 'load_test.xlsx'
+        excel_file = 'load_test_grpc.xlsx'
         addJSONToExcel(inputJSONFile=output_file, outputXlsxFile=excel_file)
         print(f'Succesfully added to Excel file {excel_file}')
     except Exception as e:

@@ -18,17 +18,18 @@ def read_file(filename):
             'clients': json_data['options']['connections'],
             'workers': json_data['options']['concurrency'],
             'request_count': json_data['count'],
-            'min_time': f"{round(json_data['fastest'] / 1000, 3)}ms",
-            'max_time': f"{round(json_data['slowest']  / 1000, 3)}ms",
+            'min_time': f"{round(json_data['fastest'] / 1000000, 4)}ms",
+            'max_time': f"{round(json_data['slowest']  / 1000000, 4)}ms",
         }
 
         for percentage in json_data['latencyDistribution']:
+            print(percentage)
             if percentage['percentage'] == 50:
-                data["50th_percentile"] = f"{round(percentage['latency'] / 1000, 3)}ms"
+                data["50th_percentile"] = f"{round(percentage['latency'] / 100000, 4)}ms"
             if percentage['percentage'] == 90:
-                data["90th_percentile"] = f"{round(percentage['latency'] / 1000, 3)}ms"
+                data["90th_percentile"] = f"{round(percentage['latency'] / 100000, 4)}ms"
             if percentage['percentage'] == 99:
-                data["99th_percentile"] = f"{round(percentage['latency'] / 1000, 3)}ms"
+                data["99th_percentile"] = f"{round(percentage['latency'] / 100000, 4)}ms"
 
         return data
     except FileNotFoundError:
@@ -115,7 +116,7 @@ def main():
         # Find all files matching the pattern "output_*.log"
         file_pattern = "./output/logs/output_client_*.json"
         matching_files = glob.glob(file_pattern)
-        output_file = './output/json/result.json'
+        output_file = './output/json/result_client.json'
 
         if not matching_files:
             print('No Matching files found')
