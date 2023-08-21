@@ -28,19 +28,17 @@ def executeCommand(data, base_url, commands_file):
         proto_service = data['proto_service']
         output_file = f'./output/logs/output_client_{workers}_{requests}.json'
 
-        print("data file = ", data_file)
         file_data = {}
         with open(data_file, 'r') as json_file:
             file_data = json.load(json_file)
         filename = f'output_server_{workers}_{requests}.json'
-        print("filename = ", filename, file_data)
         # file
         data = json.dumps({
             **file_data,
             "filename": filename
         })
-        print("data = ", data)
-        command = f"ghz --insecure -n {requests} -c {workers} --proto {proto_file} --call {proto_service} -d '{data}' {base_url} --output={output_file} --format=json"
+
+        command = f"ghz --insecure -n {requests} -c {workers} --proto {proto_file} --call {proto_service} -d '{data}' {base_url} --output={output_file} --format=json --debug=./debug.txt"
 
         append_to_file(commands_file, command)
     except Exception as e:

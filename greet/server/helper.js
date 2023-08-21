@@ -37,22 +37,19 @@ function calculateMean(array) {
 }
 
 
-const writeToFile = (timeRequired, request_count, serverlogfileName, logger) => {
+const writeToFile = async (timeRequired, request_count, serverlogfileName, logger) => {
   try {
     const file_name = serverlogfileName ?? 'output_server.log'
     // console.log("filename = ", file_name)
-    console.log("filename", file_name)
     const path = `./output/logs/${file_name}`
     const data = `${request_count} ${timeRequired.toString()}\n`
-    console.log("write to file has been called ", data)
-    fs.appendFileSync(path, data, (err) => {
+    fs.appendFile(path, data, (err) => {
       if (err) {
         console.log("Error occurred while appending data to file : ", path, err)
       }
+      // return new Promise().resolve({ "status": "Success" })
       // console.log("added success")
     })
-
-    console.log('reach')
   } catch (error) {
     console.log("error while writing to file", error)
   }

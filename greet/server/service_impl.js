@@ -2,7 +2,7 @@ const logger = require('gk-logger')();
 const pb = require('../proto/greet_pb')
 const RedisClient = require('./redis/redisClient');
 const helper = require('./helper');
-
+const fs = require('node:fs')
 
 class Count {
   static request_count = 0;
@@ -102,8 +102,8 @@ const calculate = () => {
 exports.storeRedisData = (call, callback) => {
   const startTime = Date.now();
   call.on('data', (req) => {
-    const file_name = req.getFilename()
     RedisClient.setKey(req.getKey(), req.getValue()).then(response => {
+      const file_name = req.getFilename() ?? 'output_server.log'
       let res;
       if (response) {
         res = new pb.RedisResponse()
@@ -117,9 +117,19 @@ exports.storeRedisData = (call, callback) => {
       const endTime = Date.now();
       const timeRequired = endTime - startTime;
       Count.increment()
-      helper.writeToFile(timeRequired, Count.getCount(), file_name, logger)
+      let path = `./output/logs/${file_name}`
 
-      call.write(res);
+      const request_count = Count.getCount()
+      const data = `${request_count} ${timeRequired.toString()}\n`
+
+      fs.appendFile(path, data, (err) => {
+        if (err) {
+          console.log("Error occurred while appending data to file : ", path, err)
+        }
+        console.log("Count", request_count)
+        call.write(res);
+      })
+
     }).catch(error => {
       const res = new pb.RedisResponse()
         .setStatus(500)

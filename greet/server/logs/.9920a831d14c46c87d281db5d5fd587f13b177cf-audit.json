@@ -6,14 +6,14 @@
     "auditLog": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/.9920a831d14c46c87d281db5d5fd587f13b177cf-audit.json",
     "files": [
         {
-            "date": 1692590595041,
-            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-21_09",
-            "hash": "6fc092e171d826666cdce14232656dcb"
+            "date": 1692603599347,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-21_13",
+            "hash": "9c5aae779552d1d89e9dbb6bd35de0d2"
         },
         {
-            "date": 1692594088777,
-            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-21_10",
-            "hash": "b1f51a5f37208584e1030bf6945e92ea"
+            "date": 1692606609372,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service.log.2023-08-21_14",
+            "hash": "51ab4d0e5baa9aa3dc4035099dc305b3"
         }
     ]
 }
