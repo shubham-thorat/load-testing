@@ -7,7 +7,7 @@ const path = require('path');
 require('dotenv').config()
 
 const addr = process.env.BASE_URL || 'localhost:5051';
-
+console.log(addr)
 function cleanup(server) {
   logger.info('Server cleanup method is calling');
   if (server) {

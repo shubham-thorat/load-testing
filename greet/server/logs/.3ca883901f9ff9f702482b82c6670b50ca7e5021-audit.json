@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "/home/ubuntu/load-testing/greet/server/logs/.3ca883901f9ff9f702482b82c6670b50ca7e5021-audit.json",
+    "files": [
+        {
+            "date": 1692612640355,
+            "name": "/home/ubuntu/load-testing/greet/server/logs/callbreak-game-service.log.2023-08-21_10",
+            "hash": "0be0692f1cc897e7d4834a948f696332"
+        }
+    ]
+}

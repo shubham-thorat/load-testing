@@ -126,7 +126,9 @@ exports.storeRedisData = (call, callback) => {
         if (err) {
           console.log("Error occurred while appending data to file : ", path, err)
         }
-        console.log("Count", request_count)
+        logger.info(JSON.stringify({
+          "count": request_count,
+        }))
         call.write(res);
       })
 
