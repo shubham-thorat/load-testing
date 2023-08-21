@@ -4,11 +4,9 @@ const logger = require('gk-logger')();
 const { GreetServiceService } = require('../proto/greet_grpc_pb');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config()
 
-
-const addr = 'localhost:5051';
-const addr2 = 'localhost:5051';
-
+const addr = process.env.BASE_URL || 'localhost:5051';
 
 function cleanup(server) {
   logger.info('Server cleanup method is calling');
