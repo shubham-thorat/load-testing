@@ -41,6 +41,7 @@ class Count {
   }
 }
 
+let prev_file = ''
 server.on('stream', (stream, headers) => {
   // console.log("stream started.....")
   const startTime = Date.now()
@@ -116,11 +117,17 @@ server.on('stream', (stream, headers) => {
 
           helper.writeToFile(timeRequired, Count.getCount(), serverlogfileName, logger)
 
-          logger.info(JSON.stringify({
-            streamId: stream.id,
-            TimeDiffServer: (endTime - startTime) / 1000,
-            request_count: Count.getCount()
-          }))
+          // logger.info(JSON.stringify({
+          //   streamId: stream.id,
+          //   TimeDiffServer: (endTime - startTime) / 1000,
+          //   request_count: Count.getCount()
+          // }))
+          if (prev_file !== serverlogfileName) {
+
+            console.log("1 Process Ended reinital request count", prev_file)
+            console.log("request_count", count, getCount())
+            Count.setInitial()
+          }
 
           stream.end(JSON.stringify({
             msg: 'Redis key set success',
