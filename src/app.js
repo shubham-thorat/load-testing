@@ -47,15 +47,15 @@ server.on('stream', (stream, headers) => {
 
   const method = headers[':method'];
   const path = headers[':path'];
-  console.log("headers", headers)
-  const serverlogfilePath = headers['logfilepath'];
+  // console.log("headers", headers)
+  const serverlogfileName = headers['logfilepath'];
 
-  logger.info(JSON.stringify({
-    "Method": method,
-    "Path": path,
-    "streamId": stream.id,
-    "startTime": startTime,
-  }));
+  // logger.info(JSON.stringify({
+  //   "Method": method,
+  //   "Path": path,
+  //   "streamId": stream.id,
+  //   "startTime": startTime,
+  // }));
 
 
   stream.on('aborted', () => {
@@ -114,13 +114,12 @@ server.on('stream', (stream, headers) => {
           Count.increment()
           const timeRequired = endTime - startTime;
 
-          helper.writeToFile(timeRequired, Count.getCount(), serverlogfilePath, logger)
+          helper.writeToFile(timeRequired, Count.getCount(), serverlogfileName, logger)
 
           logger.info(JSON.stringify({
-            msg: 'Redis key set success',
             streamId: stream.id,
             TimeDiffServer: (endTime - startTime) / 1000,
-            "request count": Count.getCount()
+            request_count: Count.getCount()
           }))
 
           stream.end(JSON.stringify({
