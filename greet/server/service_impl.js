@@ -102,6 +102,7 @@ const calculate = () => {
 exports.storeRedisData = (call, callback) => {
   const startTime = Date.now();
   call.on('data', (req) => {
+    const file_name = req.getFilename()
     RedisClient.setKey(req.getKey(), req.getValue()).then(response => {
       let res;
       if (response) {
@@ -116,8 +117,7 @@ exports.storeRedisData = (call, callback) => {
       const endTime = Date.now();
       const timeRequired = endTime - startTime;
       Count.increment()
-
-      helper.writeToFile(timeRequired, Count.getCount(), serverlogfileName, logger)
+      helper.writeToFile(timeRequired, Count.getCount(), file_name, logger)
 
       call.write(res);
     }).catch(error => {

@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/.9d3df33d2152d335f8ae28fb0580ec224cc3a450-audit.json",
+    "files": [
+        {
+            "date": 1692590595043,
+            "name": "/Users/shubham.thorat/Documents/Callbreak/http2/grpc/greet/server/logs/callbreak-game-service-error.log.2023-08-21_09",
+            "hash": "dbdd2452c382db48ca6c3285bc28cf50"
+        }
+    ]
+}
